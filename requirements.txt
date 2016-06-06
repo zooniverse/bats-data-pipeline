@@ -1,0 +1,4 @@
+boto
+progressbar2
+pymongo
+ujson
