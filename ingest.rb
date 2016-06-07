@@ -18,19 +18,17 @@ begin
 rescue
   puts "Error trying to parse the manifest file."
   exit
-end
+end; nil
 
 total = raw_subjects.count
 i = 0
 
-project = Project.where(name: 'bat_detective')
+project = Project.where(name: 'bat_detective').first
 workflow = project.workflows.first
 
 raw_subjects.each do |raw_subject|
   puts "#{ i +=1 } / #{ total }"
-
-  bson_id = BSON::ObjectId(subject['_id'])
-
+  bson_id = BSON::ObjectId(raw_subject['_id'])
   subject = {
     _id: bson_id,
     project: project.id,
@@ -38,8 +36,7 @@ raw_subjects.each do |raw_subject|
     location: raw_subject['location'],
     metadata: raw_subject['metadata']
   }
-
   unless BatDetectiveSubject.where(_id: bson_id).exists?
     BatDetectiveSubject.create(subject).pause!
   end
-end
+end; nil
