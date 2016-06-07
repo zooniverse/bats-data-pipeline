@@ -45,7 +45,7 @@ for source_file in source_bucket.list(prefix=SOURCE_PATH):
         source_typemap[subject_name_match.group('type')]
     ] = source_file
 
-for prefix, source_subject in source_subjects.items():
+for prefix, source_subject in bar(source_subjects.items()):
     if len(source_subject) != 2:
         continue
 
