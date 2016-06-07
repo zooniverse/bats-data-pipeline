@@ -20,7 +20,7 @@ s3_conn = boto.connect_s3()
 source_bucket = s3_conn.get_bucket(SOURCE_BUCKET)
 destination_bucket = s3_conn.get_bucket(DESTINATION_BUCKET)
 
-bar = progressbar.ProgressBar()
+bar = progressbar.ProgressBar(redirect_stdout=True)
 subject_manifest = []
 
 source_subjects = {}
