@@ -26,7 +26,7 @@ subject_manifest = []
 source_subjects = {}
 source_typemap = {
     'mp3': 'mp3',
-    'wav.png': 'standard',
+    'png': 'standard',
 }
 destination_typemap = {
     'mp3': 'mp3',
@@ -35,7 +35,7 @@ destination_typemap = {
 
 for source_file in source_bucket.list(prefix=SOURCE_PATH):
     subject_name_match = re.match(
-        r'(?P<prefix>.*)\.(?P<type>(mp3|wav\.png))$',
+        r'(?P<prefix>.*)\.(?P<type>(mp3|png))$',
         source_file.name
     )
     if not subject_name_match:
